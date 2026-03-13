@@ -44,6 +44,23 @@ npm run dev:backend
 
 Backend default port: `4000`
 
+
+## Deploy on Vercel (fix for 404 / NOT_FOUND)
+
+This repository is a monorepo. Vercel must run the **frontend** Next.js build from the root scripts.
+
+- `vercel.json` is included so Vercel uses Next.js with:
+  - `npm install`
+  - `npm run build`
+  - `npm run dev`
+- Root `package.json` now exposes `build`, `start`, and `dev` scripts that forward to the `frontend` workspace.
+
+If your existing Vercel project still returns 404, re-deploy after pulling these changes and ensure:
+
+1. Build Command is `npm run build`
+2. Output is managed by Next.js (no custom output directory)
+3. Root Directory is repository root (`/`)
+
 ## Security Foundations
 
 - JWT-based admin authorization.
