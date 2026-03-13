@@ -47,13 +47,13 @@ Backend default port: `4000`
 
 ## Deploy on Vercel (fix for 404 / NOT_FOUND)
 
-This repository is a monorepo. `vercel.json` explicitly targets `frontend/package.json` with `@vercel/next`, ensuring Vercel deploys the Next.js app from `frontend/` instead of treating the repo root as the app.
+This repository is a monorepo. `vercel.json` now uses Next.js framework mode with root install/build/dev commands, and those root scripts forward to the `frontend` workspace.
 
 If your existing Vercel project still returns 404, re-deploy after pulling these changes and ensure:
 
-1. Framework Preset is **Other** or left to `vercel.json` (do not force a conflicting Root Directory setting).
-2. The deployment includes `vercel.json` from this repository root.
-3. No custom rewrites in Vercel project settings override `/`.
+1. Build Command is `npm run build` (from repository root).
+2. Install Command is `npm install` (from repository root).
+3. Root Directory is `/` and no custom rewrites override `/`.
 
 ## Security Foundations
 
